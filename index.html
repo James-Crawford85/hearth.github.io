@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17110e">
+  <meta name="description" content="Hearth is an open-source virtual tabletop for gathering your party and playing tabletop role-playing games together.">
+  <title>Hearth — A place for every adventure</title>
+  <link rel="icon" type="image/png" href="assets/hearth-icon.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #17110e;
+      --bg-soft: #211813;
+      --panel: #2a1d16;
+      --panel-2: #332219;
+      --text: #f4eadb;
+      --muted: #c0ad98;
+      --dim: #8e7967;
+      --gold: #d5a45c;
+      --gold-bright: #f0c77d;
+      --ember: #e66d32;
+      --line: rgba(213,164,92,.22);
+      --max: 1160px;
+      --radius: 18px;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -18%, rgba(180,85,35,.18), transparent 48%),
+        radial-gradient(ellipse at 100% 45%, rgba(116,61,31,.10), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(23,17,14,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 750; letter-spacing: .04em; }
+    .brand img { width: 42px; height: 42px; object-fit: contain; }
+    .brand span { font-family: Georgia, serif; font-size: 1.35rem; }
+    .navlinks { display: flex; align-items: center; gap: 26px; }
+    .navlinks a { color: var(--muted); text-decoration: none; font-size: .93rem; }
+    .navlinks a:hover { color: var(--gold-bright); }
+    .navlinks .nav-cta { color: #1c130d; background: var(--gold); padding: 9px 16px; border-radius: 999px; font-weight: 750; }
+    .navlinks .nav-cta:hover { background: var(--gold-bright); color: #1c130d; }
+    .hero { padding: 76px 0 82px; text-align: center; position: relative; }
+    .eyebrow { color: var(--gold-bright); text-transform: uppercase; letter-spacing: .2em; font-size: .75rem; font-weight: 800; }
+    .hero h1 {
+      font: 700 clamp(2.7rem, 7vw, 5.6rem)/1.03 Georgia, "Times New Roman", serif;
+      letter-spacing: -.045em; margin: 18px auto 20px; max-width: 900px;
+      text-shadow: 0 5px 28px rgba(230,109,50,.15);
+    }
+    .hero h1 em { color: var(--gold-bright); font-style: normal; }
+    .lead { max-width: 690px; margin: 0 auto; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.2rem); }
+    .hero-logo {
+      width: min(850px, 100%); margin: 38px auto 0; display: block;
+      filter: drop-shadow(0 22px 38px rgba(0,0,0,.48));
+    }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 13px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 48px; padding: 11px 21px; border-radius: 999px; text-decoration: none;
+      font-weight: 750; border: 1px solid var(--line); transition: .18s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--gold-bright), var(--gold)); color: #21150e; border-color: transparent; box-shadow: 0 8px 28px rgba(213,164,92,.16); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .btn-secondary { color: var(--text); background: rgba(255,255,255,.035); }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-bright); }
+    .section { padding: 76px 0; border-top: 1px solid var(--line); }
+    .section-head { max-width: 720px; margin: 0 auto 38px; text-align: center; }
+    .section h2 { font: 700 clamp(2rem, 4vw, 3.1rem)/1.12 Georgia, serif; margin: 8px 0 13px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature {
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 25px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.12);
+    }
+    .feature .glyph {
+      width: 43px; height: 43px; display: grid; place-items: center; border-radius: 13px;
+      color: var(--gold-bright); background: rgba(213,164,92,.12); border: 1px solid var(--line);
+      font-size: 1.25rem; margin-bottom: 17px;
+    }
+    .feature h3 { margin: 0 0 8px; font: 700 1.25rem Georgia, serif; }
+    .feature p { margin: 0; color: var(--muted); font-size: .96rem; }
+    .showcase {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch;
+    }
+    .shot {
+      min-height: 270px; border: 1px solid var(--line); border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(213,164,92,.09), transparent 55%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 1px, transparent 1px 12px),
+        #201712;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 28px; text-align: center; overflow: hidden; position: relative;
+    }
+    .shot:before { content: ""; position: absolute; inset: 12px; border: 1px dashed rgba(213,164,92,.25); border-radius: 12px; pointer-events: none; }
+    .shot .placeholder-icon { font-size: 2rem; color: var(--gold); margin-bottom: 8px; }
+    .shot strong { font: 700 1.25rem Georgia, serif; }
+    .shot span { color: var(--muted); max-width: 330px; font-size: .92rem; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+    .step { padding: 22px 22px 22px 64px; position: relative; border-left: 1px solid var(--line); }
+    .step:before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 17px; top: 20px; width: 32px; height: 32px; border-radius: 50%;
+      display: grid; place-items: center; color: #21150e; background: var(--gold); font-weight: 850;
+    }
+    .step h3 { margin: 0 0 7px; font: 700 1.18rem Georgia, serif; }
+    .step p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .callout {
+      display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+      background: linear-gradient(110deg, #3a2619, #241811 70%);
+      border: 1px solid rgba(213,164,92,.35); border-radius: 22px; padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .callout h2 { margin: 0 0 8px; font: 700 clamp(1.7rem, 3vw, 2.4rem) Georgia, serif; }
+    .callout p { color: var(--muted); margin: 0; max-width: 650px; }
+    .callout .btn { white-space: nowrap; }
+    footer { padding: 32px 0 42px; border-top: 1px solid var(--line); color: var(--dim); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+    .footer-brand img { width: 34px; height: 34px; object-fit: contain; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold-bright); }
+    .note { color: var(--dim); font-size: .82rem; margin-top: 12px; }
+    @media (max-width: 800px) {
+      .feature-grid, .how-grid { grid-template-columns: 1fr 1fr; }
+      .showcase { grid-template-columns: 1fr; }
+      .callout { grid-template-columns: 1fr; }
+      .callout .btn { justify-self: start; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(var(--max), calc(100% - 30px)); }
+      .nav { min-height: 66px; }
+      .navlinks { gap: 13px; }
+      .navlinks a:not(.nav-cta) { display: none; }
+      .hero { padding: 58px 0 60px; }
+      .feature-grid, .how-grid { grid-template-columns: 1fr; }
+      .section { padding: 58px 0; }
+      .callout { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="Hearth home">
+        <img src="assets/hearth-icon.png" alt="">
+        <span>HEARTH</span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#preview">Preview</a>
+        <a href="#getting-started">Get started</a>
+        <!-- Replace the # below with your GitHub repository URL. -->
+        <a class="nav-cta" href="https://github.com/James-Crawford85/hearth-vtt">View on GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="wrap">
+        <div class="eyebrow">An open-source virtual tabletop</div>
+        <h1>A place for every <em>adventure.</em></h1>
+        <p class="lead">Bring your party together around the table, wherever you are. Hearth is being built as a welcoming virtual tabletop for playing tabletop role-playing games with friends.</p>
+        <img class="hero-logo" src="assets/hearth-logo.png" alt="Hearth fantasy logo with a glowing fireplace, adventurer miniatures, and a twenty-sided die">
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/James-Crawford85/hearth-vtt">Explore the project <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href="#features">Discover Hearth</a>
+        </div>
+        <p class="note">Open source · Community-built · Made for tabletop role-playing games</p>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The table is yours</div>
+          <h2>Built around the game night</h2>
+          <p>Hearth's goal is to make it easier for Game Masters and players to share a table, tell stories, and keep the adventure moving.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">⚔</div>
+            <h3>Run your adventures</h3>
+            <p>A shared virtual space for tabletop role-playing sessions. Add a short description of the core play experience here as it takes shape.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">♟</div>
+            <h3>Bring the table to life</h3>
+            <p>Use this space to describe maps, tokens, character pieces, or other tabletop tools once those features are implemented.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">✦</div>
+            <h3>Open by design</h3>
+            <p>Hearth is an open-source project. Explore the code, follow development, report issues, and help shape what comes next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="preview">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">A look inside the tavern</div>
+          <h2>See Hearth in action</h2>
+          <p>These are intentional placeholders. Replace each panel with a screenshot or short animated capture when the interface is ready.</p>
+        </div>
+        <div class="showcase">
+          <div class="shot">
+            <div class="placeholder-icon" aria-hidden="true">▧</div>
+            <strong>Game table preview</strong>
+            <span>[Screenshot placeholder: the main tabletop view, showing a sample map, tokens, and player area.]</span>
+          </div>
+          <div class="shot">
+            <div class="placeholder-icon" aria-hidden="true">▤</div>
+            <strong>Campaign and character tools</strong>
+            <span>[Screenshot placeholder: campaign setup, character sheets, or the tools used by a Game Master.]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="getting-started">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Join the party</div>
+          <h2>Get involved</h2>
+          <p>Whether you want to play, test, contribute code, or help plan the next feature, there's a place for you at the table.</p>
+        </div>
+        <div class="how-grid">
+          <article class="step">
+            <h3>Explore the repository</h3>
+            <p>Read the project overview, check the current development status, and see what's on the roadmap.</p>
+          </article>
+          <article class="step">
+            <h3>Try it out</h3>
+            <p>[Add installation and setup instructions here when a public build is ready.]</p>
+          </article>
+          <article class="step">
+            <h3>Help build Hearth</h3>
+            <p>Report bugs, suggest features, improve documentation, or contribute a pull request.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="callout">
+          <div>
+            <div class="eyebrow">Pull up a chair</div>
+            <h2>Every great adventure starts at the table.</h2>
+            <p>Follow Hearth's development on GitHub and help create an open virtual tabletop for the tabletop RPG community.</p>
+          </div>
+          <a class="btn btn-primary" href="https://github.com/James-Crawford85/hearth-vtt">Visit the GitHub repository ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img src="assets/hearth-icon.png" alt="">
+        <span>Hearth · A place for every adventure.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/James-Crawford85/hearth-vtt">GitHub</a>
+        <a href="https://github.com/James-Crawford85/hearth-vtt">Report an issue</a>
+        <a href="#about">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
