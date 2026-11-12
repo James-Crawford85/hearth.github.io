@@ -4,8 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17110e">
-  <meta name="description" content="Hearth is an open-source virtual tabletop for gathering your party and playing tabletop role-playing games together.">
+  <meta name="description" content="Hearth is a free, open-source virtual tabletop. Host your game from your own computer; players join from a browser. Any game system, no subscription, no lock-in.">
   <title>Hearth — A place for every adventure</title>
+  <meta property="og:title" content="Hearth — A place for every adventure">
+  <meta property="og:description" content="A free, open-source virtual tabletop. Host your game from your own computer; players join from a browser. Any game system, no subscription, no lock-in.">
+  <meta property="og:image" content="https://james-crawford85.github.io/hearth.github.io/assets/hearth-logo.png">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/hearth-icon.png">
   <style>
     :root {
@@ -76,7 +80,7 @@
     .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.08); }
     .btn-secondary { color: var(--text); background: rgba(255,255,255,.035); }
     .btn-secondary:hover { border-color: var(--gold); color: var(--gold-bright); }
-    .section { padding: 76px 0; border-top: 1px solid var(--line); }
+    .section { padding: 76px 0; border-top: 1px solid var(--line); scroll-margin-top: 40px; }
     .section-head { max-width: 720px; margin: 0 auto 38px; text-align: center; }
     .section h2 { font: 700 clamp(2rem, 4vw, 3.1rem)/1.12 Georgia, serif; margin: 8px 0 13px; }
     .section-head p { color: var(--muted); margin: 0; }
@@ -135,8 +139,21 @@
     .footer-links a { color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: var(--gold-bright); }
     .note { color: var(--dim); font-size: .82rem; margin-top: 12px; }
+    .note.center { text-align: center; max-width: 760px; margin: 22px auto 0; }
+    .note a, .step a { color: var(--gold-bright); }
+    .downloads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .download {
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 25px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
+    }
+    .download h3 { margin: 0; font: 700 1.3rem Georgia, serif; }
+    .download .btn { width: 100%; }
+    .download .alt { color: var(--muted); font-size: .9rem; }
+    .download .alt:hover { color: var(--gold-bright); }
+    .play-steps { margin-top: 46px; }
     @media (max-width: 800px) {
-      .feature-grid, .how-grid { grid-template-columns: 1fr 1fr; }
+      .feature-grid, .how-grid, .downloads { grid-template-columns: 1fr 1fr; }
       .showcase { grid-template-columns: 1fr; }
       .callout { grid-template-columns: 1fr; }
       .callout .btn { justify-self: start; }
@@ -147,7 +164,7 @@
       .navlinks { gap: 13px; }
       .navlinks a:not(.nav-cta) { display: none; }
       .hero { padding: 58px 0 60px; }
-      .feature-grid, .how-grid { grid-template-columns: 1fr; }
+      .feature-grid, .how-grid, .downloads { grid-template-columns: 1fr; }
       .section { padding: 58px 0; }
       .callout { padding: 26px; }
     }
@@ -161,11 +178,11 @@
         <span>HEARTH</span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="#about">About</a>
         <a href="#features">Features</a>
+        <a href="#your-game">Your game</a>
         <a href="#preview">Preview</a>
-        <a href="#getting-started">Get started</a>
-        <!-- Replace the # below with your GitHub repository URL. -->
+        <a href="#download">Download</a>
+        <a href="#get-involved">Get involved</a>
         <a class="nav-cta" href="https://github.com/James-Crawford85/hearth-vtt">View on GitHub ↗</a>
       </nav>
     </div>
@@ -174,15 +191,15 @@
   <main>
     <section class="hero" id="about">
       <div class="wrap">
-        <div class="eyebrow">An open-source virtual tabletop</div>
+        <div class="eyebrow">A free, open-source virtual tabletop</div>
         <h1>A place for every <em>adventure.</em></h1>
-        <p class="lead">Bring your party together around the table, wherever you are. Hearth is being built as a welcoming virtual tabletop for playing tabletop role-playing games with friends.</p>
+        <p class="lead">Host your game from your own computer, and your players join from a web browser or the app. Play any tabletop role-playing game, or build your own, with no subscription, no account and no lock-in.</p>
         <img class="hero-logo" src="assets/hearth-logo.png" alt="Hearth fantasy logo with a glowing fireplace, adventurer miniatures, and a twenty-sided die">
         <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/James-Crawford85/hearth-vtt">Explore the project <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-secondary" href="#features">Discover Hearth</a>
+          <a class="btn btn-primary" href="#download">Download Hearth</a>
+          <a class="btn btn-secondary" href="https://github.com/James-Crawford85/hearth-vtt">View on GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        <p class="note">Open source · Community-built · Made for tabletop role-playing games</p>
+        <p class="note">Windows · macOS · Linux · MIT licensed · <span data-version>early release</span></p>
       </div>
     </section>
 
@@ -191,23 +208,62 @@
         <div class="section-head">
           <div class="eyebrow">The table is yours</div>
           <h2>Built around the game night</h2>
-          <p>Hearth's goal is to make it easier for Game Masters and players to share a table, tell stories, and keep the adventure moving.</p>
+          <p>Everything a Game Master needs to run a session, and everything players need to join one, in one place that runs on your own machine.</p>
         </div>
         <div class="feature-grid">
           <article class="feature">
             <div class="glyph" aria-hidden="true">⚔</div>
-            <h3>Run your adventures</h3>
-            <p>A shared virtual space for tabletop role-playing sessions. Add a short description of the core play experience here as it takes shape.</p>
+            <h3>Run your sessions</h3>
+            <p>Scenes, a combat tracker with initiative and turns, and dice rolled on the server so nobody can fudge them. Chat with whispers and secret GM rolls. A journal for notes and handouts, shared with everyone, some players or no one.</p>
           </article>
           <article class="feature">
             <div class="glyph" aria-hidden="true">♟</div>
-            <h3>Bring the table to life</h3>
-            <p>Use this space to describe maps, tokens, character pieces, or other tabletop tools once those features are implemented.</p>
+            <h3>Maps that play</h3>
+            <p>Tokens, walls and doors (locked or secret), line of sight and fog of war, lights and a day-to-night fade, drawings, a ruler and pings. Line a map up with the grid by dragging across a few of its squares.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">🛡</div>
+            <h3>Characters that keep up</h3>
+            <p>Sheets that work out the numbers for you, guided character creation, and a level-up dialog that asks for each choice and can take a level back. Forge magic items, and let bonuses and conditions apply themselves.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">❖</div>
+            <h3>Your whole library at hand</h3>
+            <p>Monsters, items, spells and rules in searchable collections. Filter by type or book, search the text as well as the names, and, where a system lists requirements, see only what a character qualifies for. The GM can switch whole books off for a campaign.</p>
+          </article>
+          <article class="feature">
+            <div class="glyph" aria-hidden="true">♫</div>
+            <h3>Set the mood</h3>
+            <p>Playlists that play in sync for everyone, even late arrivals. Ambient sounds placed on the map grow louder as tokens approach and are muffled by walls. Every player sets their own volume.</p>
           </article>
           <article class="feature">
             <div class="glyph" aria-hidden="true">✦</div>
-            <h3>Open by design</h3>
-            <p>Hearth is an open-source project. Explore the code, follow development, report issues, and help shape what comes next.</p>
+            <h3>Yours to keep</h3>
+            <p>Worlds are plain files you can back up, copy or move, with automatic backups on every launch. Host from your PC or an always-on server. Free and open source under the MIT license.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="your-game">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Any system, your rules</div>
+          <h2>Make it your game</h2>
+          <p>Hearth doesn't come locked to one game. Game systems are packages anyone can make and share, and you can build one inside Hearth without writing code.</p>
+        </div>
+        <div class="how-grid">
+          <article class="step">
+            <h3>Build a system</h3>
+            <p>Design stats, resources, skills and item types in the system builder, connect them with formulas, and watch sheets update as you go. Start blank or from a copy of another system.</p>
+          </article>
+          <article class="step">
+            <h3>Let the rules do the work</h3>
+            <p>Lookup tables, resources that refill on a rest, attacks with advantage and critical hits, classes that grant features level by level, and requirements the sheet checks for you.</p>
+          </article>
+          <article class="step">
+            <h3>Share it</h3>
+            <p>Systems, add-on modules and themes are plain folders or zip files. Install one from a link or a file, no store needed. A small example system comes built in.</p>
           </article>
         </div>
       </div>
@@ -218,42 +274,86 @@
         <div class="section-head">
           <div class="eyebrow">A look inside the tavern</div>
           <h2>See Hearth in action</h2>
-          <p>These are intentional placeholders. Replace each panel with a screenshot or short animated capture when the interface is ready.</p>
+          <p>Screenshots are on their way. Until then, here's what you'll find.</p>
         </div>
         <div class="showcase">
           <div class="shot">
             <div class="placeholder-icon" aria-hidden="true">▧</div>
-            <strong>Game table preview</strong>
-            <span>[Screenshot placeholder: the main tabletop view, showing a sample map, tokens, and player area.]</span>
+            <strong>The game table</strong>
+            <span>A lit dungeon map lined up with the grid, tokens with their own light and sight, walls and doors, and fog of war, with chat and the combat tracker alongside.</span>
           </div>
           <div class="shot">
             <div class="placeholder-icon" aria-hidden="true">▤</div>
-            <strong>Campaign and character tools</strong>
-            <span>[Screenshot placeholder: campaign setup, character sheets, or the tools used by a Game Master.]</span>
+            <strong>Characters and campaign tools</strong>
+            <span>Character sheets, the level-up dialog with its choices, the content library with search and filters, and the system builder.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="getting-started">
+    <section class="section" id="download">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Get Hearth</div>
+          <h2>Download Hearth</h2>
+          <p>The desktop app hosts your games and joins other people's. It checks for updates by itself. <span data-version-line></span></p>
+        </div>
+        <div class="downloads">
+          <article class="download">
+            <h3>Windows</h3>
+            <a class="btn btn-primary" data-asset="x64-setup\.exe$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">Installer (.exe)</a>
+            <a class="alt" data-asset="x64_en-US\.msi$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">or the .msi package</a>
+          </article>
+          <article class="download">
+            <h3>macOS</h3>
+            <a class="btn btn-primary" data-asset="_aarch64\.dmg$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">Apple silicon (.dmg)</a>
+            <a class="alt" data-asset="_x64\.dmg$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">or Intel (.dmg)</a>
+          </article>
+          <article class="download">
+            <h3>Linux</h3>
+            <a class="btn btn-primary" data-asset="\.AppImage$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">AppImage</a>
+            <a class="alt" data-asset="\.deb$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">.deb</a>
+            <a class="alt" data-asset="\.rpm$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">.rpm</a>
+          </article>
+        </div>
+        <p class="note center">The installers aren't code-signed yet, so your computer may warn you the first time. On Windows choose <em>More info → Run anyway</em>; on macOS, right-click the app and choose <em>Open</em>. Want an always-on server instead? The standalone <a href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">server builds</a> run on a PC, home server or VPS.</p>
+
+        <div class="how-grid play-steps">
+          <article class="step">
+            <h3>Launch a world</h3>
+            <p>Create a world, pick its game system and press <em>Launch</em>. Hearth starts hosting it and opens it for you as the Game Master.</p>
+          </article>
+          <article class="step">
+            <h3>Invite your players</h3>
+            <p>Add your players with a temporary password, and give them the address the launcher shows. Across the internet, forward the port on your router.</p>
+          </article>
+          <article class="step">
+            <h3>Play</h3>
+            <p>Players join from any web browser, with nothing to install, or from the Hearth app. Everyone sees the table update in real time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="get-involved">
       <div class="wrap">
         <div class="section-head">
           <div class="eyebrow">Join the party</div>
           <h2>Get involved</h2>
-          <p>Whether you want to play, test, contribute code, or help plan the next feature, there's a place for you at the table.</p>
+          <p>Hearth is an early release, growing quickly. Whether you play, test, write code or make content, there's a place for you at the table.</p>
         </div>
         <div class="how-grid">
           <article class="step">
-            <h3>Explore the repository</h3>
-            <p>Read the project overview, check the current development status, and see what's on the roadmap.</p>
+            <h3>Read the docs</h3>
+            <p>See how worlds, packages and the rules engine fit together, and how to <a href="https://github.com/James-Crawford85/hearth-vtt/blob/main/docs/builder.md">build a system</a> or a <a href="https://github.com/James-Crawford85/hearth-vtt/blob/main/docs/packages.md">module</a>.</p>
           </article>
           <article class="step">
-            <h3>Try it out</h3>
-            <p>[Add installation and setup instructions here when a public build is ready.]</p>
+            <h3>Tell us what you need</h3>
+            <p>Found a bug, or missing a feature your table relies on? <a href="https://github.com/James-Crawford85/hearth-vtt/issues">Open an issue</a> on GitHub.</p>
           </article>
           <article class="step">
             <h3>Help build Hearth</h3>
-            <p>Report bugs, suggest features, improve documentation, or contribute a pull request.</p>
+            <p>Improve the code or the documentation with a pull request, or make a system, module or theme for others to use.</p>
           </article>
         </div>
       </div>
@@ -265,9 +365,9 @@
           <div>
             <div class="eyebrow">Pull up a chair</div>
             <h2>Every great adventure starts at the table.</h2>
-            <p>Follow Hearth's development on GitHub and help create an open virtual tabletop for the tabletop RPG community.</p>
+            <p>Download Hearth, light the fire and gather your party. Follow development on GitHub, and help build an open virtual tabletop for the whole community.</p>
           </div>
-          <a class="btn btn-primary" href="https://github.com/James-Crawford85/hearth-vtt">Visit the GitHub repository ↗</a>
+          <a class="btn btn-primary" href="#download">Download Hearth</a>
         </div>
       </div>
     </section>
@@ -277,14 +377,35 @@
     <div class="wrap footer-inner">
       <div class="footer-brand">
         <img src="assets/hearth-icon.png" alt="">
-        <span>Hearth · A place for every adventure.</span>
+        <span>Hearth · A place for every adventure. · MIT licensed</span>
       </div>
       <div class="footer-links">
         <a href="https://github.com/James-Crawford85/hearth-vtt">GitHub</a>
-        <a href="https://github.com/James-Crawford85/hearth-vtt">Report an issue</a>
+        <a href="https://github.com/James-Crawford85/hearth-vtt/releases">Releases</a>
+        <a href="https://github.com/James-Crawford85/hearth-vtt/tree/main/docs">Docs</a>
+        <a href="https://github.com/James-Crawford85/hearth-vtt/issues">Report an issue</a>
         <a href="#about">Back to top ↑</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Point the download buttons at the newest release's files, and show its version. Without
+    // this (offline, or GitHub's rate limit), they still go to the latest release's page.
+    fetch('https://api.github.com/repos/James-Crawford85/hearth-vtt/releases/latest')
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((rel) => {
+        for (const a of document.querySelectorAll('a[data-asset]')) {
+          const re = new RegExp(a.dataset.asset);
+          const hit = (rel.assets || []).find((x) => re.test(x.name));
+          if (hit) a.href = hit.browser_download_url;
+        }
+        const v = rel.tag_name || '';
+        for (const el of document.querySelectorAll('[data-version]')) el.textContent = `${v} early release`;
+        const line = document.querySelector('[data-version-line]');
+        if (line && v) line.textContent = `Latest version: ${v}${rel.published_at ? `, released ${new Date(rel.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}` : ''}.`;
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>
