@@ -53,7 +53,8 @@
     .brand img { width: 42px; height: 42px; object-fit: contain; }
     .brand span { font-family: Georgia, serif; font-size: 1.35rem; }
     .navlinks { display: flex; align-items: center; gap: 26px; }
-    .navlinks a { color: var(--muted); text-decoration: none; font-size: .93rem; }
+    .navlinks a { color: var(--muted); text-decoration: none; font-size: .93rem; white-space: nowrap; }
+    @media (max-width: 900px) { .navlinks { gap: 16px; } .navlinks a[href="#your-game"], .navlinks a[href="#get-involved"] { display: none; } }
     .navlinks a:hover { color: var(--gold-bright); }
     .navlinks .nav-cta { color: #1c130d; background: var(--gold); padding: 9px 16px; border-radius: 999px; font-weight: 750; }
     .navlinks .nav-cta:hover { background: var(--gold-bright); color: #1c130d; }
@@ -112,6 +113,14 @@
     .shot:before { content: ""; position: absolute; inset: 12px; border: 1px dashed rgba(213,164,92,.25); border-radius: 12px; pointer-events: none; }
     .shot .placeholder-icon { font-size: 2rem; color: var(--gold); margin-bottom: 8px; }
     .shot strong { font: 700 1.25rem Georgia, serif; }
+    /* A real screenshot or video instead of a placeholder. */
+    .shot.media { margin: 0; padding: 0; min-height: 0; justify-content: flex-start; align-items: stretch; background: #120d0a; }
+    .shot.media:before { display: none; }
+    .shot.media img, .shot.media video { width: 100%; height: auto; display: block; aspect-ratio: auto; background: #000; }
+    .shot.media figcaption span { max-width: none; }
+    .shot.media.wide { grid-column: 1 / -1; }
+    .shot.media.wide video { max-width: 820px; margin: 0 auto; }
+    .shot.media figcaption { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 4px; text-align: left; align-items: flex-start; }
     .shot span { color: var(--muted); max-width: 330px; font-size: .92rem; }
     .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
     .step { padding: 22px 22px 22px 64px; position: relative; border-left: 1px solid var(--line); }
@@ -274,17 +283,21 @@
         <div class="section-head">
           <div class="eyebrow">A look inside the tavern</div>
           <h2>See Hearth in action</h2>
-          <p>Screenshots are on their way. Until then, here's what you'll find.</p>
+          <p>The table as the Game Master and a player see it, the tools behind it, and lining a map up with the grid.</p>
         </div>
         <div class="showcase">
-          <div class="shot">
-            <strong>The game table</strong>
-            <img class="vtt-windows" src="assets/TokenFOW.png" alt="A view of the VTT" style="max-width: 300px; height: auto;">
-          </div>
-          <div class="shot">
-            <strong>Characters and campaign tools</strong>
-            <img class="vtt-windows" src="assets/VTTWindows.png" alt="A view of the VTT windows" style="max-width: 300px; height: auto;">
-          </div>
+          <figure class="shot media">
+            <img src="assets/table-gm-and-player.webp" alt="Hearth showing the same snowy map twice: on top the Game Master's view of the whole map and both tokens; below, a player's view, dark except for what their token can see past the walls" loading="lazy">
+            <figcaption><strong>The game table</strong><span>Walls and vision: the Game Master sees the whole map (top), while a player sees only what their token can see (bottom).</span></figcaption>
+          </figure>
+          <figure class="shot media">
+            <img src="assets/VTTWindows.png" alt="Hearth's windows open side by side: the system builder, a character sheet, and a collection of classes with search and filters" loading="lazy">
+            <figcaption><strong>Characters and campaign tools</strong><span>The system builder, a character sheet, and the content library with its search and filters, side by side.</span></figcaption>
+          </figure>
+          <figure class="shot media wide">
+            <video src="assets/map-grid-align.webm" autoplay loop muted playsinline preload="metadata" aria-label="Lining a map up with the grid: dragging across a block of the map's squares, then applying"></video>
+            <figcaption><strong>Line a map up with the grid</strong><span>Drag across a few of the map's squares, and the grid and the map snap together. Coming in the next release.</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
