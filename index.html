@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17110e">
-  <meta name="description" content="Hearth is a free, open-source virtual tabletop. Host your game from your own computer; players join from a browser. Any game system, no subscription, no lock-in.">
-  <title>Hearth — A place for every adventure</title>
-  <meta property="og:title" content="Hearth — A place for every adventure">
+  <meta name="description" content="HearthfireVTT is a free, open-source virtual tabletop. Host your game from your own computer; players join from a browser. Any game system, no subscription, no lock-in.">
+  <title>HearthfireVTT — A place for every adventure</title>
+  <meta property="og:title" content="HearthfireVTT — A place for every adventure">
   <meta property="og:description" content="A free, open-source virtual tabletop. Host your game from your own computer; players join from a browser. Any game system, no subscription, no lock-in.">
-  <meta property="og:image" content="https://james-crawford85.github.io/hearth.github.io/assets/hearth-logo.png">
+  <meta property="og:image" content="https://james-crawford85.github.io/hearth.github.io/assets/hearthfire-logo.png">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/hearth-icon.png">
   <style>
@@ -167,6 +167,19 @@
       .callout { grid-template-columns: 1fr; }
       .callout .btn { justify-self: start; }
     }
+    /* The longer HEARTHFIRE wordmark: tighten the header before the links run out of room. */
+    @media (max-width: 760px) {
+      .nav { gap: 12px; }
+      .navlinks a[href="#preview"] { display: none; }
+      .brand { gap: 8px; }
+      .brand img { width: 34px; height: 34px; }
+      .brand span { font-size: 1.1rem; letter-spacing: .02em; }
+      .navlinks .nav-cta { padding: 8px 12px; font-size: .9rem; white-space: nowrap; }
+    }
+    @media (max-width: 400px) {
+      .brand img { display: none; }
+      .brand span { font-size: 1rem; }
+    }
     @media (max-width: 600px) {
       .wrap { width: min(var(--max), calc(100% - 30px)); }
       .nav { min-height: 66px; }
@@ -182,9 +195,9 @@
 <body>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="brand" href="#" aria-label="Hearth home">
+      <a class="brand" href="#" aria-label="HearthfireVTT home">
         <img src="assets/hearth-icon.png" alt="">
-        <span>HEARTH</span>
+        <span>HEARTHFIRE</span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#features">Features</a>
@@ -192,7 +205,7 @@
         <a href="#preview">Preview</a>
         <a href="#download">Download</a>
         <a href="#get-involved">Get involved</a>
-        <a class="nav-cta" href="https://github.com/James-Crawford85/hearth-vtt">View on GitHub ↗</a>
+        <a class="nav-cta" href="https://github.com/James-Crawford85/hearthfire-vtt">View on GitHub ↗</a>
       </nav>
     </div>
   </header>
@@ -203,10 +216,10 @@
         <div class="eyebrow">A free, open-source virtual tabletop</div>
         <h1>A place for every <em>adventure.</em></h1>
         <p class="lead">Host your game from your own computer, and your players join from a web browser or the app. Play any tabletop role-playing game, or build your own, with no subscription, no account and no lock-in.</p>
-        <img class="hero-logo" src="assets/hearth-logo.png" alt="Hearth fantasy logo with a glowing fireplace, adventurer miniatures, and a twenty-sided die">
+        <img class="hero-logo" src="assets/hearthfire-logo.webp" alt="HearthfireVTT fantasy logo with a glowing fireplace, adventurer miniatures, and a twenty-sided die">
         <div class="actions">
-          <a class="btn btn-primary" href="#download">Download Hearth</a>
-          <a class="btn btn-secondary" href="https://github.com/James-Crawford85/hearth-vtt">View on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-primary" href="#download">Download Hearthfire</a>
+          <a class="btn btn-secondary" href="https://github.com/James-Crawford85/hearthfire-vtt">View on GitHub <span aria-hidden="true">↗</span></a>
         </div>
         <p class="note">Windows · macOS · Linux · MIT licensed · <span data-version>early release</span></p>
       </div>
@@ -259,7 +272,7 @@
         <div class="section-head">
           <div class="eyebrow">Any system, your rules</div>
           <h2>Make it your game</h2>
-          <p>Hearth doesn't come locked to one game. Game systems are packages anyone can make and share, and you can build one inside Hearth without writing code.</p>
+          <p>Hearthfire doesn't come locked to one game. Game systems are packages anyone can make and share, and you can build one inside Hearthfire without writing code.</p>
         </div>
         <div class="how-grid">
           <article class="step">
@@ -282,16 +295,16 @@
       <div class="wrap">
         <div class="section-head">
           <div class="eyebrow">A look inside the tavern</div>
-          <h2>See Hearth in action</h2>
+          <h2>See Hearthfire in action</h2>
           <p>The table as the Game Master and a player see it, the tools behind it, and lining a map up with the grid.</p>
         </div>
         <div class="showcase">
           <figure class="shot media">
-            <img src="assets/table-gm-and-player.webp" alt="Hearth showing the same snowy map twice: on top the Game Master's view of the whole map and both tokens; below, a player's view, dark except for what their token can see past the walls" loading="lazy">
+            <img src="assets/table-gm-and-player.webp" alt="Hearthfire showing the same snowy map twice: on top the Game Master's view of the whole map and both tokens; below, a player's view, dark except for what their token can see past the walls" loading="lazy">
             <figcaption><strong>The game table</strong><span>Walls and vision: the Game Master sees the whole map (top), while a player sees only what their token can see (bottom).</span></figcaption>
           </figure>
           <figure class="shot media">
-            <img src="assets/VTTWindows.png" alt="Hearth's windows open side by side: the system builder, a character sheet, and a collection of classes with search and filters" loading="lazy">
+            <img src="assets/VTTWindows.png" alt="Hearthfire's windows open side by side: the system builder, a character sheet, and a collection of classes with search and filters" loading="lazy">
             <figcaption><strong>Characters and campaign tools</strong><span>The system builder, a character sheet, and the content library with its search and filters, side by side.</span></figcaption>
           </figure>
           <figure class="shot media wide">
@@ -305,34 +318,34 @@
     <section class="section" id="download">
       <div class="wrap">
         <div class="section-head">
-          <div class="eyebrow">Get Hearth</div>
-          <h2>Download Hearth</h2>
+          <div class="eyebrow">Get Hearthfire</div>
+          <h2>Download Hearthfire</h2>
           <p>The desktop app hosts your games and joins other people's. It checks for updates by itself. <span data-version-line></span></p>
         </div>
         <div class="downloads">
           <article class="download">
             <h3>Windows</h3>
-            <a class="btn btn-primary" data-asset="x64-setup\.exe$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">Installer (.exe)</a>
-            <a class="alt" data-asset="x64_en-US\.msi$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">or the .msi package</a>
+            <a class="btn btn-primary" data-asset="x64-setup\.exe$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">Installer (.exe)</a>
+            <a class="alt" data-asset="x64_en-US\.msi$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">or the .msi package</a>
           </article>
           <article class="download">
             <h3>macOS</h3>
-            <a class="btn btn-primary" data-asset="_aarch64\.dmg$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">Apple silicon (.dmg)</a>
-            <a class="alt" data-asset="_x64\.dmg$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">or Intel (.dmg)</a>
+            <a class="btn btn-primary" data-asset="_aarch64\.dmg$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">Apple silicon (.dmg)</a>
+            <a class="alt" data-asset="_x64\.dmg$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">or Intel (.dmg)</a>
           </article>
           <article class="download">
             <h3>Linux</h3>
-            <a class="btn btn-primary" data-asset="\.AppImage$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">AppImage</a>
-            <a class="alt" data-asset="\.deb$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">.deb</a>
-            <a class="alt" data-asset="\.rpm$" href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">.rpm</a>
+            <a class="btn btn-primary" data-asset="\.AppImage$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">AppImage</a>
+            <a class="alt" data-asset="\.deb$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">.deb</a>
+            <a class="alt" data-asset="\.rpm$" href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">.rpm</a>
           </article>
         </div>
-        <p class="note center">The installers aren't code-signed yet, so your computer may warn you the first time. On Windows choose <em>More info → Run anyway</em>; on macOS, right-click the app and choose <em>Open</em>. Want an always-on server instead? The standalone <a href="https://github.com/James-Crawford85/hearth-vtt/releases/latest">server builds</a> run on a PC, home server or VPS.</p>
+        <p class="note center">The installers aren't code-signed yet, so your computer may warn you the first time. On Windows choose <em>More info → Run anyway</em>; on macOS, right-click the app and choose <em>Open</em>. Want an always-on server instead? The standalone <a href="https://github.com/James-Crawford85/hearthfire-vtt/releases/latest">server builds</a> run on a PC, home server or VPS.</p>
 
         <div class="how-grid play-steps">
           <article class="step">
             <h3>Launch a world</h3>
-            <p>Create a world, pick its game system and press <em>Launch</em>. Hearth starts hosting it and opens it for you as the Game Master.</p>
+            <p>Create a world, pick its game system and press <em>Launch</em>. Hearthfire starts hosting it and opens it for you as the Game Master.</p>
           </article>
           <article class="step">
             <h3>Invite your players</h3>
@@ -340,7 +353,7 @@
           </article>
           <article class="step">
             <h3>Play</h3>
-            <p>Players join from any web browser, with nothing to install, or from the Hearth app. Everyone sees the table update in real time.</p>
+            <p>Players join from any web browser, with nothing to install, or from the Hearthfire app. Everyone sees the table update in real time.</p>
           </article>
         </div>
       </div>
@@ -351,19 +364,19 @@
         <div class="section-head">
           <div class="eyebrow">Join the party</div>
           <h2>Get involved</h2>
-          <p>Hearth is an early release, growing quickly. Whether you play, test, write code or make content, there's a place for you at the table.</p>
+          <p>Hearthfire is an early release, growing quickly. Whether you play, test, write code or make content, there's a place for you at the table.</p>
         </div>
         <div class="how-grid">
           <article class="step">
             <h3>Read the docs</h3>
-            <p>See how worlds, packages and the rules engine fit together, and how to <a href="https://github.com/James-Crawford85/hearth-vtt/blob/main/docs/builder.md">build a system</a> or a <a href="https://github.com/James-Crawford85/hearth-vtt/blob/main/docs/packages.md">module</a>.</p>
+            <p>See how worlds, packages and the rules engine fit together, and how to <a href="https://github.com/James-Crawford85/hearthfire-vtt/blob/main/docs/builder.md">build a system</a> or a <a href="https://github.com/James-Crawford85/hearthfire-vtt/blob/main/docs/packages.md">module</a>.</p>
           </article>
           <article class="step">
             <h3>Tell us what you need</h3>
-            <p>Found a bug, or missing a feature your table relies on? <a href="https://github.com/James-Crawford85/hearth-vtt/issues">Open an issue</a> on GitHub.</p>
+            <p>Found a bug, or missing a feature your table relies on? <a href="https://github.com/James-Crawford85/hearthfire-vtt/issues">Open an issue</a> on GitHub.</p>
           </article>
           <article class="step">
-            <h3>Help build Hearth</h3>
+            <h3>Help build Hearthfire</h3>
             <p>Improve the code or the documentation with a pull request, or make a system, module or theme for others to use.</p>
           </article>
         </div>
@@ -376,9 +389,9 @@
           <div>
             <div class="eyebrow">Pull up a chair</div>
             <h2>Every great adventure starts at the table.</h2>
-            <p>Download Hearth, light the fire and gather your party. Follow development on GitHub, and help build an open virtual tabletop for the whole community.</p>
+            <p>Download Hearthfire, light the fire and gather your party. Follow development on GitHub, and help build an open virtual tabletop for the whole community.</p>
           </div>
-          <a class="btn btn-primary" href="#download">Download Hearth</a>
+          <a class="btn btn-primary" href="#download">Download Hearthfire</a>
         </div>
       </div>
     </section>
@@ -388,13 +401,13 @@
     <div class="wrap footer-inner">
       <div class="footer-brand">
         <img src="assets/hearth-icon.png" alt="">
-        <span>Hearth · A place for every adventure. · MIT licensed</span>
+        <span>HearthfireVTT · A place for every adventure. · MIT licensed</span>
       </div>
       <div class="footer-links">
-        <a href="https://github.com/James-Crawford85/hearth-vtt">GitHub</a>
-        <a href="https://github.com/James-Crawford85/hearth-vtt/releases">Releases</a>
-        <a href="https://github.com/James-Crawford85/hearth-vtt/tree/main/docs">Docs</a>
-        <a href="https://github.com/James-Crawford85/hearth-vtt/issues">Report an issue</a>
+        <a href="https://github.com/James-Crawford85/hearthfire-vtt">GitHub</a>
+        <a href="https://github.com/James-Crawford85/hearthfire-vtt/releases">Releases</a>
+        <a href="https://github.com/James-Crawford85/hearthfire-vtt/tree/main/docs">Docs</a>
+        <a href="https://github.com/James-Crawford85/hearthfire-vtt/issues">Report an issue</a>
         <a href="#about">Back to top ↑</a>
       </div>
     </div>
@@ -403,7 +416,7 @@
   <script>
     // Point the download buttons at the newest release's files, and show its version. Without
     // this (offline, or GitHub's rate limit), they still go to the latest release's page.
-    fetch('https://api.github.com/repos/James-Crawford85/hearth-vtt/releases/latest')
+    fetch('https://api.github.com/repos/James-Crawford85/hearthfire-vtt/releases/latest')
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((rel) => {
         for (const a of document.querySelectorAll('a[data-asset]')) {
